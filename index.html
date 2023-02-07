@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/053d005e8b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/styles.css" />
+
+    <title>Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form id="search-form" class="mb-3">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Enter City"
+                  class="form-control"
+                  id="city-input"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary w-60"
+                />
+              </div>
+            </div>
+          </form>
+          <div class="overview">
+            <h1 id="city">New York</h1>
+            <ul>
+              <li>
+                <span>Last Updated: </span><span id="day">Thursday</span>
+                <span id="hour">05</span>:<span id="minute">00</span>
+              </li>
+              <li id="description">Clear</li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="d-flex weather-temperature">
+                <!--This flexbox allows everything to be in a line-->
+                <img src="" alt="clear" class="float-left" id="icon" />
+                <div class="float-left">
+                  <strong id="temperature">12</strong
+                  ><span class="units"
+                    ><a
+                      style="text-decoration: none"
+                      href="#"
+                      id="celsius-link"
+                      class="active"
+                      >°C</a
+                    >
+                    |
+                    <a
+                      style="text-decoration: none"
+                      href="#"
+                      id="farenheit-link"
+                      >°F</a
+                    ></span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <ul>
+                <li id="precip">Precipitation 0%</li>
+                <li id="humidity">Humidity 70%</li>
+                <li id="wind-speed">Wind Speed 2 km/h</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <small>
+          <a
+            href="https://github.com/kimsarahsj/Vanilla_WeatherApp.git"
+            target="_blank"
+            style="text-decoration: none"
+          >
+            Open-sourced</a
+          >
+          <!--target blank opens link in new tab-->
+          code by Sarah Kim
+        </small>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
