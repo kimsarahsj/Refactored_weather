@@ -15,6 +15,12 @@
       src="https://kit.fontawesome.com/053d005e8b.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
 
@@ -22,7 +28,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-app-wrapper">
+      <div class="weather-app-wrapper card">
         <div class="weather-app">
           <form id="search-form" class="mb-3">
             <div class="row">
@@ -45,20 +51,39 @@
             </div>
           </form>
           <div class="overview">
-            <h1 id="city">New York</h1>
+            <input
+              type="button"
+              value="📍current location"
+              class="btn btn-light"
+            />
+            <div>
+              <span class="line-break"></span>
+            </div>
             <ul>
               <li>
-                <span>Last Updated: </span><span id="day">Thursday</span>
+                <span>today's weather</span>
+              </li>
+              <li>
+                <span id="day">Thursday</span> | <span id="month">Feb </span
+                ><span id="date">07</span> |
+                <span>Last Updated: </span>
                 <span id="hour">05</span>:<span id="minute">00</span>
               </li>
+            </ul>
+            <div>
+              <span class="line-break"></span>
+            </div>
+            <h1 id="city">New York</h1>
+            <ul>
               <li id="description">Clear</li>
             </ul>
           </div>
+
           <div class="row">
             <div class="col-6">
               <div class="d-flex weather-temperature">
                 <!--This flexbox allows everything to be in a line-->
-                <img src="" alt="clear" class="float-left" id="icon" />
+
                 <div class="float-left">
                   <strong id="temperature">12</strong
                   ><span class="units"
@@ -78,6 +103,7 @@
                     ></span
                   >
                 </div>
+                <img src="" alt="clear" class="float-center" id="icon" />
               </div>
             </div>
 
@@ -90,19 +116,19 @@
             </div>
           </div>
         </div>
-        <small>
-          <a
-            href="https://github.com/kimsarahsj/Vanilla_WeatherApp.git"
-            target="_blank"
-            style="text-decoration: none"
-          >
-            Open-sourced</a
-          >
-          <!--target blank opens link in new tab-->
-          code by Sarah Kim
-        </small>
       </div>
+      <small class="git-link">
+        <a
+          href="https://github.com/kimsarahsj/Vanilla_WeatherApp.git"
+          target="_blank"
+          style="text-decoration: none"
+        >
+          Open-sourced</a
+        >
+        <!--target blank opens link in new tab-->
+        code by Sarah Kim
+      </small>
     </div>
-    <script src="src/index.js"></script>
+    <script src="src/refactored.js"></script>
   </body>
 </html>

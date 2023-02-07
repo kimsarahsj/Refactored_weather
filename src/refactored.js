@@ -13,6 +13,28 @@ let days = [
 let day = days[now.getDay()];
 todayDay.innerHTML = `${day}`;
 
+let todayMonth = document.querySelector("#month");
+let months = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+];
+let month = months[now.getMonth()];
+todayMonth.innerHTML = `${month} `;
+
+let todayDate = document.querySelector("#date");
+let date = now.getDate();
+todayDate.innerHTML = `${date}`;
+
 let todayHour = document.querySelector("#hour");
 let hours = now.getHours();
 let ampm = "am";
@@ -59,7 +81,7 @@ function search(city) {
   let url = `https://api.shecodes.io/weather/v1/current?query=${encoded}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayTemperature);
 }
-search("New York"); //search on load
+search("Atlanta"); //search on load
 
 function handleSubmit(event) {
   event.preventDefault();
