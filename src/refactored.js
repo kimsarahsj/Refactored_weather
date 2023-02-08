@@ -72,6 +72,7 @@ function displayTemperature(response) {
   windSpeedElement.innerHTML = `Wind Speed ${Math.round(
     response.data.wind.speed
   )} km/h`;
+  getForecast(response.data.city);
 }
 
 //let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${key}`;
@@ -140,30 +141,43 @@ farenheitLink.addEventListener("click", displayFarenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 // end
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 //start forecast
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecast = response.data.daily; //store array data in forecast
+
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"]; //array of days
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay) {
+    //forecast day is an object
+    //if (index < 6) {
     //for each day inject a new column of html
     forecastHTML =
       forecastHTML +
       `
-      <div class="col-2 daily-forecast">
-        <div class="weather-forecast-date">${day}</div>
+      <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
         <img
-          src="http://openweathermap.org/img/wn/50d@2x.png"
+          src="${forecastDay.condition.icon_url}"
           alt=""
           width="42"
-          id="forecast-icon"
         />
         <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> 18° </span>
-          <span class="weather-forecast-temperature-min"> 12° </span>
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temperature.maximum
+          )}° </span> |
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temperature.minimum
+          )}° </span>
         </div>
       </div>
   `;
@@ -171,8 +185,15 @@ function displayForecast() {
 
   forecastHTML = forecastHTML + `</div>`; //close the div for class "row"
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 //end forecast
+
+function getForecast(city) {
+  console.log(city);
+  let apiKey = "fc1b832b8095ff408d9652d0tb44f7oa";
+  let units = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 search("Atlanta"); //search on load
-displayForecast();

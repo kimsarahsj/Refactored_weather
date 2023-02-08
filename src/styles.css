@@ -129,3 +129,7 @@ li {
   text-transform: uppercase;
   letter-spacing: 6px;
 }
+
+.weather-forecast-temperature-min {
+  color: gray;
+}
