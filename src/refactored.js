@@ -92,6 +92,26 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+//Current Loction
+//Get current position
+//function updatePage(response) {}
+
+function showPosition(position) {
+  lat = position.coords.latitude;
+  lon = position.coords.longitude;
+  let units = "metric";
+  let apiKey = "fc1b832b8095ff408d9652d0tb44f7oa";
+  let url = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
+  axios.get(url).then(displayTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+let currentCityBtn = document.querySelector("#locationBtn");
+currentCityBtn.addEventListener("click", getCurrentPosition);
+
 //Farenheit coversion
 
 function displayFarenheitTemperature(event) {
