@@ -81,7 +81,6 @@ function search(city) {
   let url = `https://api.shecodes.io/weather/v1/current?query=${encoded}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayTemperature);
 }
-search("Atlanta"); //search on load
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -94,7 +93,6 @@ form.addEventListener("submit", handleSubmit);
 
 //Current Loction
 //Get current position
-//function updatePage(response) {}
 
 function showPosition(position) {
   lat = position.coords.latitude;
@@ -142,3 +140,39 @@ farenheitLink.addEventListener("click", displayFarenheitTemperature);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 // end
+
+//start forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"]; //array of days
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    //for each day inject a new column of html
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2 daily-forecast">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+          id="forecast-icon"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`; //close the div for class "row"
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+//end forecast
+search("Atlanta"); //search on load
+displayForecast();

@@ -119,3 +119,13 @@ li {
 .weather-temperature .active:hover {
   text-decoration: none;
 }
+.daily-forecast {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.weather-forecast-date {
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
